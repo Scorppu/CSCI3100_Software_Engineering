@@ -19,8 +19,6 @@ class Antibody {
 +kill_enemy(enemy: Enemy) -> Boolean
 }
 
-Antibody --> Enemy
-
 interface WhiteBloodCell {
 +is_enemy(antigens: [Antigen]) -> Boolean
 +kill(enemy: Enemy) -> Boolean
@@ -31,27 +29,15 @@ class Neutrophils {
 +is_enemy(antigens: [Antigen]) -> Boolean
 }
 
-Neutrophils *-- WhiteBloodCell
-Neutrophils ..> Enemy
-Neutrophils ..> Antigen
-
-interface Lymphocytes {
+class Lymphocytes {
 +is_enemy(antigens: [Antigen]) -> Boolean
 +kill(enemy: Enemy) -> Boolean
 }
-
-Lymphocytes *-- WhiteBloodCell
-Lymphocytes ..> Enemy
-Lymphocytes ..> Antigen
 
 class NKCell {
 +is_enemy(antigens: [Antigen]) -> Boolean
 +kill(enemy: Enemy) -> Boolean
 }
-
-NKCell *-- Lymphocytes
-NKCell ..> Enemy
-NKCell ..> Antigen
 
 class BCell {
 +is_enemy(antigens: [Antigen]) -> Boolean
@@ -60,27 +46,32 @@ class BCell {
 +ask_helper_t_cell_make_antibodies(helper_t_cell: HelperTCell)
 }
 
-BCell *-- Lymphocytes
-BCell ..> Enemy
-BCell ..> Antigen
-BCell ..> HelperTCell
-
 class TCell {
 +is_activated : Boolean
 +is_enemy(antigens: [Antigen]) -> Boolean
 +kill(enemy: Enemy) -> Boolean
 }
 
-TCell *-- Lymphocytes
-TCell ..> Enemy
-TCell ..> Antigen
-
 class HelperTCell {
 +get_enemy_characteristics(enemy: Enemy) -> [float]
 }
 
-HelperTCell *-- TCell
-HelperTCell ..> Enemy
 
-Enemy " " *-- " " Antigen
+Neutrophils ..|> WhiteBloodCell
+Neutrophils ..> Enemy
+WhiteBloodCell ..> Antigen
+
+Lymphocytes ..|> WhiteBloodCell
+Lymphocytes ..> Enemy
+
+Lymphocytes --* NKCell
+Lymphocytes --* TCell
+Lymphocytes --* BCell 
+BCell ..> Antibody
+BCell ..> HelperTCell
+
+Antibody --> Enemy
+HelperTCell *-- TCell
+
+Enemy --* Antigen
 @enduml
