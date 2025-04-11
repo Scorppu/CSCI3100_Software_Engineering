@@ -1,19 +1,23 @@
 from asgn_3_package.pokeman_gym import PokemanGym
 from asgn_3_package.pokeman import Pokeman, SoftEngPokeman
-from asgn_3_package.softeng_pokeman_trainer import add_training_methods
+from asgn_3_package.softeng_pokeman_trainer import create_proxy
+
 
 pokeman_gym = PokemanGym()
 
-# Create and train a regular Pokeman
+# Train until the pokeman reaches the max level
 pikachu = Pokeman("Pikachu")
 while pikachu.get_level() < Pokeman.MAX_LEVEL:
     pokeman_gym.train_pokeman(pikachu)
     print(pikachu)
 
-# Create and train a SoftEngPokeman
+# Create a SoftEngPokeman
 softeng = SoftEngPokeman("SoftEng")
-# Add training methods using duck typing
-softeng = add_training_methods(softeng)
+
+# Get a proxy that can be trained but updates the SoftEngPokeman
+proxy = create_proxy(softeng)
+
 # Train until max level
 while softeng.get_cur_level() < Pokeman.MAX_LEVEL:
-    pokeman_gym.train_pokeman(softeng)
+    pokeman_gym.train_pokeman(proxy)
+
