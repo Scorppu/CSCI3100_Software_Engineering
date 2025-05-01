@@ -1,4 +1,4 @@
-###2.2
+### 2.2
 ```bash
     4000013 function calls in 1.233 seconds
 
@@ -14,11 +14,11 @@
         6    0.000    0.000    0.000    0.000 {built-in method builtins.len}
         2    0.000    0.000    0.000    0.000 {built-in method builtins.min}
 ```
-###3.1 analyze
-###3.2 longest_common_substr
+### 3.1 analyze
+### 3.2 longest_common_substr
 
-###4.2 The change I've made is simple. I used a 2D array and dynamic programming. 
-###4.3
+### 4.2 The change I've made is simple. I used a 2D array and dynamic programming. 
+### 4.3
 ```bash
 ------------------------------------------------------------------------------------------------ benchmark: 2 tests ------------------------------------------------------------------------------------------------
 Name (time in ms)                                      Min                 Max                Mean            StdDev              Median               IQR            Outliers     OPS         
