@@ -18,4 +18,5 @@ def test_longest_common_substr_raw(prepare_benchmark_data, benchmark):
     # TODO 
 
     # we just want to measure the time taken, so we don't care about the result
-    assert result > 0
+    benchmark(lib_raw.longest_common_substr, prepare_benchmark_data[0], prepare_benchmark_data[1])
+    # assert result > 0
