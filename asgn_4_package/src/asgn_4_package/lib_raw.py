@@ -9,13 +9,24 @@ def longest_common_substr(s1: str, s2: str) -> int:
     # m = len(s1)
     # n = len(s2)
 
+    # # An array to store the prev row's results
+    # prev = []
+    # for i in range(0, n + 2):
+    #     prev.append(0)
+
     # res = 0
-    # for i in range(m):
-    #     for j in range(n):
-    #         curr = 0
-    #         while (i + curr) < m and (j + curr) < n and s1[i + curr] == s2[j + curr]:
-    #             curr += 1
-    #         res = max(res, curr)
+    # for i in range(1, m + 1):
+    #     # A temp array to store the curent row's results
+    #     cur = []
+    #     for j in range(0, n + 2):
+    #         cur.append(0)
+    #     for j in range(1, n + 1):
+    #         if s1[i - 1] == s2[j - 1]:
+    #             cur[j] = prev[j - 1] + 1
+    #             res = max(res, cur[j])
+    #         else:
+    #             cur[j] = 0
+    #     prev = cur
 
     # return res
 
